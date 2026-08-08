@@ -272,7 +272,6 @@ h3 {
   }
 }
 
-.portrait-placeholder,
 .about__portrait {
   align-items: center;
   background: linear-gradient(135deg, #142a4a 0%, #244c7d 72%, #6e2934 100%);
@@ -282,12 +281,13 @@ h3 {
   justify-content: center;
 }
 
-.portrait-placeholder {
+.hero__image {
   aspect-ratio: 4 / 3;
-
-  .material-symbols-rounded {
-    font-size: 3rem;
-  }
+  border-radius: 8px;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
 }
 
 .panel-kicker {
