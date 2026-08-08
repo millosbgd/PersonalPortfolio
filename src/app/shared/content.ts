@@ -4,12 +4,12 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
   sr: {
     lang: 'sr',
     meta: {
-      title: 'Business Process & Digital Transformation Advisory',
+      title: 'Novaković Advisory',
       description: 'Nezavisno savetovanje za unapređenje poslovnih procesa, digitalizaciju, management analytics i tehnološke odluke.',
     },
     brand: {
-      name: 'Advisor Name',
-      role: 'Business Process & Digital Transformation Advisor',
+      name: 'Novaković Advisory',
+      role: 'Business Process & Digital Transformation Advisory',
     },
     nav: [
       { label: 'Ekspertiza', href: '#expertise' },
@@ -138,22 +138,23 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       },
     },
     footer: {
-      text: 'Advisor Name Advisory. Nezavisno savetovanje za poslovne procese i digitalnu transformaciju.',
+      text: 'Novaković Advisory. Nezavisno savetovanje za poslovne procese i digitalnu transformaciju.',
       links: [
-        { label: 'Email', href: 'mailto:hello@example.com' },
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+        { label: 'Email', href: 'mailto:milos.novakovic@yandex.com' },
+        { label: 'Telefon', href: 'tel:+38163389598' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/milos-novakovic-7092091b3/' },
       ],
     },
   },
   en: {
     lang: 'en',
     meta: {
-      title: 'Business Process & Digital Transformation Advisory',
+      title: 'Novaković Advisory',
       description: 'Independent advisory for business process improvement, digitalization, management analytics, and technology decisions.',
     },
     brand: {
-      name: 'Advisor Name',
-      role: 'Business Process & Digital Transformation Advisor',
+      name: 'Novaković Advisory',
+      role: 'Business Process & Digital Transformation Advisory',
     },
     nav: [
       { label: 'Expertise', href: '#expertise' },
@@ -282,22 +283,23 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       },
     },
     footer: {
-      text: 'Advisor Name Advisory. Independent advisory for business processes and digital transformation.',
+      text: 'Novaković Advisory. Independent advisory for business processes and digital transformation.',
       links: [
-        { label: 'Email', href: 'mailto:hello@example.com' },
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+        { label: 'Email', href: 'mailto:milos.novakovic@yandex.com' },
+        { label: 'Phone', href: 'tel:+38163389598' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/milos-novakovic-7092091b3/' },
       ],
     },
   },
   ru: {
     lang: 'ru',
     meta: {
-      title: 'Консалтинг по бизнес-процессам и цифровой трансформации',
+      title: 'Novaković Advisory',
       description: 'Независимый консалтинг по улучшению бизнес-процессов, цифровизации, управленческой аналитике и технологическим решениям.',
     },
     brand: {
-      name: 'Advisor Name',
-      role: 'Business Process & Digital Transformation Advisor',
+      name: 'Novaković Advisory',
+      role: 'Business Process & Digital Transformation Advisory',
     },
     nav: [
       { label: 'Экспертиза', href: '#expertise' },
@@ -426,10 +428,11 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       },
     },
     footer: {
-      text: 'Advisor Name Advisory. Независимый консалтинг по бизнес-процессам и цифровой трансформации.',
+      text: 'Novaković Advisory. Независимый консалтинг по бизнес-процессам и цифровой трансформации.',
       links: [
-        { label: 'Email', href: 'mailto:hello@example.com' },
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+        { label: 'Email', href: 'mailto:milos.novakovic@yandex.com' },
+        { label: 'Телефон', href: 'tel:+38163389598' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/milos-novakovic-7092091b3/' },
       ],
     },
   },
