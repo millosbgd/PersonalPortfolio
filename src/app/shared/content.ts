@@ -19,7 +19,7 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     ],
     hero: {
       eyebrow: 'Independent advisory practice',
-      title: 'Vaša kompanija je porasla. Da li su procesi porasli sa njom?',
+      title: 'Rast nije jedini razlog za promenu procesa. Složenost jeste.',
       text: 'Nezavisno savetovanje za identifikaciju operativnih uskih grla, unapređenje poslovnih procesa i donošenje boljih odluka o digitalizaciji.',
       expertise: 'Business Process Improvement · Management Analytics · Digitalization Advisory',
       primaryCta: 'Razgovarajmo o problemu',
@@ -164,7 +164,7 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     ],
     hero: {
       eyebrow: 'Independent advisory practice',
-      title: 'Your company has grown. Have your processes grown with it?',
+      title: 'Growth is not the only reason to change processes. Complexity is.',
       text: 'Independent advisory for identifying operational bottlenecks, improving business processes, and making better digitalization decisions.',
       expertise: 'Business Process Improvement · Management Analytics · Digitalization Advisory',
       primaryCta: 'Discuss the problem',
@@ -309,7 +309,7 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     ],
     hero: {
       eyebrow: 'Independent advisory practice',
-      title: 'Ваша компания выросла. Выросли ли вместе с ней процессы?',
+      title: 'Рост - не единственная причина менять процессы. Сложность - причина.',
       text: 'Независимый консалтинг для выявления операционных узких мест, улучшения бизнес-процессов и более точных решений о цифровизации.',
       expertise: 'Business Process Improvement · Management Analytics · Digitalization Advisory',
       primaryCta: 'Обсудить проблему',
