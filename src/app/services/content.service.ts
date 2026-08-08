@@ -5,6 +5,8 @@ import { CONTENT } from '../shared/content';
 
 const LANGUAGE_KEY = 'advisory-language';
 const SUPPORTED_LANGUAGES: LanguageCode[] = ['sr', 'en', 'ru'];
+const SITE_URL = 'https://novakovicadvisory.com';
+const OG_IMAGE_URL = `${SITE_URL}/images/og-image.jpg`;
 
 @Injectable({ providedIn: 'root' })
 export class ContentService {
@@ -46,8 +48,21 @@ export class ContentService {
     this.document.documentElement.lang = content.lang;
     this.document.title = content.meta.title;
     this.setMeta('description', content.meta.description);
+    this.setMeta('robots', 'index, follow');
     this.setMeta('og:title', content.meta.title, 'property');
     this.setMeta('og:description', content.meta.description, 'property');
+    this.setMeta('og:type', 'website', 'property');
+    this.setMeta('og:site_name', 'Novaković Advisory', 'property');
+    this.setMeta('og:url', this.localizedUrl(content.lang), 'property');
+    this.setMeta('og:image', OG_IMAGE_URL, 'property');
+    this.setMeta('og:image:width', '1200', 'property');
+    this.setMeta('og:image:height', '630', 'property');
+    this.setMeta('twitter:card', 'summary_large_image');
+    this.setMeta('twitter:title', content.meta.title);
+    this.setMeta('twitter:description', content.meta.description);
+    this.setMeta('twitter:image', OG_IMAGE_URL);
+    this.setCanonical(content.lang);
+    this.setAlternateLinks();
   }
 
   private setMeta(name: string, content: string, attribute: 'name' | 'property' = 'name'): void {
@@ -61,5 +76,36 @@ export class ContentService {
     }
 
     element.content = content;
+  }
+
+  private localizedUrl(language: LanguageCode): string {
+    return `${SITE_URL}/${language}`;
+  }
+
+  private setCanonical(language: LanguageCode): void {
+    this.setLink('canonical', this.localizedUrl(language));
+  }
+
+  private setAlternateLinks(): void {
+    SUPPORTED_LANGUAGES.forEach((language) => {
+      this.setLink('alternate', this.localizedUrl(language), language);
+    });
+    this.setLink('alternate', this.localizedUrl('sr'), 'x-default');
+  }
+
+  private setLink(rel: string, href: string, hreflang?: string): void {
+    const selector = hreflang ? `link[rel="${rel}"][hreflang="${hreflang}"]` : `link[rel="${rel}"]`;
+    let element = this.document.head.querySelector<HTMLLinkElement>(selector);
+
+    if (!element) {
+      element = this.document.createElement('link');
+      element.rel = rel;
+      if (hreflang) {
+        element.hreflang = hreflang;
+      }
+      this.document.head.appendChild(element);
+    }
+
+    element.href = href;
   }
 }
