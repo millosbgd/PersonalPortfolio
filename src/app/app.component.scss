@@ -272,15 +272,6 @@ h3 {
   }
 }
 
-.about__portrait {
-  align-items: center;
-  background: linear-gradient(135deg, #142a4a 0%, #244c7d 72%, #6e2934 100%);
-  border-radius: 8px;
-  color: var(--background);
-  display: flex;
-  justify-content: center;
-}
-
 .hero__image {
   aspect-ratio: 4 / 3;
   border-radius: 8px;
@@ -512,10 +503,11 @@ h3 {
 
 .about__portrait {
   aspect-ratio: 4 / 5;
-
-  .material-symbols-rounded {
-    font-size: 4rem;
-  }
+  border-radius: 8px;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
 }
 
 .about__tags {
