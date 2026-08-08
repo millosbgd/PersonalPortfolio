@@ -1,0 +1,230 @@
+<header class="site-header">
+  <a class="brand" [routerLink]="['/', currentLanguage()]" aria-label="Home">
+    <span class="brand__mark" aria-hidden="true">A</span>
+    <span>
+      <strong>{{ content().brand.name }}</strong>
+      <small>{{ content().brand.role }}</small>
+    </span>
+  </a>
+
+  <button class="menu-button" type="button" (click)="toggleMenu()" [attr.aria-expanded]="mobileMenuOpen()" aria-controls="site-navigation">
+    <span class="material-symbols-rounded" aria-hidden="true">{{ mobileMenuOpen() ? 'close' : 'menu' }}</span>
+    <span class="sr-only">Menu</span>
+  </button>
+
+  <nav id="site-navigation" class="site-nav" [class.site-nav--open]="mobileMenuOpen()" aria-label="Primary navigation">
+    <a *ngFor="let item of content().nav" [href]="item.href" (click)="closeMenu()">{{ item.label }}</a>
+    <div class="language-switcher" aria-label="Language selector">
+      <button
+        *ngFor="let language of languages"
+        type="button"
+        [class.is-active]="currentLanguage() === language"
+        (click)="setLanguage(language)"
+      >
+        {{ language | uppercase }}
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero section">
+    <div class="section__inner hero__grid">
+      <div class="hero__content">
+        <p class="eyebrow">{{ content().hero.eyebrow }}</p>
+        <h1>{{ content().hero.title }}</h1>
+        <p class="hero__lead">{{ content().hero.text }}</p>
+        <p class="hero__expertise">{{ content().hero.expertise }}</p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#contact">
+            {{ content().hero.primaryCta }}
+            <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+          </a>
+          <a class="button button--secondary" href="#process">{{ content().hero.secondaryCta }}</a>
+        </div>
+      </div>
+      <aside class="hero__panel" aria-label="Advisory positioning">
+        <div class="portrait-placeholder" role="img" aria-label="Professional portrait placeholder">
+          <span class="material-symbols-rounded" aria-hidden="true">business_center</span>
+        </div>
+        <div>
+          <span class="panel-kicker">{{ content().hero.panelKicker }}</span>
+          <p>{{ content().hero.panelText }}</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="expertise" class="section">
+    <div class="section__inner">
+      <div class="section-heading">
+        <p class="eyebrow">{{ content().sectionLabels.problems }}</p>
+        <h2>{{ content().problems.title }}</h2>
+        <p>{{ content().problems.intro }}</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card" *ngFor="let item of content().problems.items">
+          <span class="material-symbols-rounded" aria-hidden="true">{{ item.icon }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="section__inner">
+      <div class="section-heading">
+        <p class="eyebrow">{{ content().sectionLabels.engagements }}</p>
+        <h2>{{ content().engagements.title }}</h2>
+        <p>{{ content().engagements.intro }}</p>
+      </div>
+      <div class="engagement-grid">
+        <article class="engagement-card" *ngFor="let item of content().engagements.items">
+          <span class="engagement-card__label">{{ item.label }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+          <ul>
+            <li *ngFor="let meta of item.meta">
+              <span class="material-symbols-rounded" aria-hidden="true">task_alt</span>
+              {{ meta }}
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="section__inner advice">
+      <div>
+        <p class="eyebrow">{{ content().sectionLabels.advice }}</p>
+        <h2>{{ content().advice.title }}</h2>
+        <p>{{ content().advice.text }}</p>
+      </div>
+      <div class="advice__principles">
+        <article *ngFor="let item of content().advice.principles">
+          <span class="material-symbols-rounded" aria-hidden="true">{{ item.icon }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section">
+    <div class="section__inner">
+      <div class="section-heading">
+        <p class="eyebrow">{{ content().sectionLabels.process }}</p>
+        <h2>{{ content().process.title }}</h2>
+        <p>{{ content().process.intro }}</p>
+      </div>
+      <div class="timeline">
+        <article class="timeline__item" *ngFor="let step of content().process.steps">
+          <span>{{ step.number }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="section__inner selected-problems">
+      <div class="section-heading">
+        <p class="eyebrow">{{ content().sectionLabels.selectedProblems }}</p>
+        <h2>{{ content().selectedProblems.title }}</h2>
+      </div>
+      <ul>
+        <li *ngFor="let item of content().selectedProblems.items">
+          <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__inner availability">
+      <div>
+        <p class="eyebrow">{{ content().availability.label }}</p>
+        <h2>{{ content().availability.title }}</h2>
+      </div>
+      <div class="availability__copy">
+        <p *ngFor="let paragraph of content().availability.paragraphs">{{ paragraph }}</p>
+        <div class="badge-row">
+          <span *ngFor="let badge of content().availability.badges">{{ badge }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section section--about">
+    <div class="section__inner about">
+      <div class="about__portrait" role="img" aria-label="Advisor portrait placeholder">
+        <span class="material-symbols-rounded" aria-hidden="true">person</span>
+      </div>
+      <div>
+        <p class="eyebrow">{{ content().sectionLabels.about }}</p>
+        <h2>{{ content().about.title }}</h2>
+        <p *ngFor="let paragraph of content().about.paragraphs">{{ paragraph }}</p>
+        <p class="about__tags">{{ content().about.tags }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="section__inner contact">
+      <div class="contact__intro">
+        <p class="eyebrow">{{ content().sectionLabels.contact }}</p>
+        <h2>{{ content().contact.title }}</h2>
+        <p>{{ content().contact.text }}</p>
+      </div>
+
+      <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="submitContact()" novalidate>
+        <label>
+          {{ content().contact.form.name }}
+          <input type="text" formControlName="name" autocomplete="name">
+        </label>
+        <label>
+          {{ content().contact.form.company }}
+          <input type="text" formControlName="company" autocomplete="organization">
+        </label>
+        <label>
+          {{ content().contact.form.email }}
+          <input type="email" formControlName="email" autocomplete="email">
+        </label>
+        <label>
+          {{ content().contact.form.phone }}
+          <input type="tel" formControlName="phone" autocomplete="tel">
+        </label>
+        <label class="contact-form__wide">
+          {{ content().contact.form.message }}
+          <textarea rows="5" formControlName="message"></textarea>
+        </label>
+        <label class="honeypot" aria-hidden="true">
+          Website
+          <input type="text" formControlName="website" tabindex="-1" autocomplete="off">
+        </label>
+
+        <p class="form-message form-message--success" *ngIf="isSuccess()">{{ content().contact.form.success }}</p>
+        <p class="form-message form-message--error" *ngIf="isError()">{{ contactForm.invalid ? content().contact.form.required : content().contact.form.error }}</p>
+
+        <button class="button button--primary" type="submit">
+          {{ content().contact.form.submit }}
+          <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+        </button>
+        <p class="contact-form__privacy">{{ content().contact.form.privacy }}</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="section__inner footer__inner">
+    <p>&copy; {{ currentYear }} {{ content().footer.text }}</p>
+    <div>
+      <a *ngFor="let link of content().footer.links" [href]="link.href">{{ link.label }}</a>
+    </div>
+  </div>
+</footer>

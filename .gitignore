@@ -1,0 +1,9 @@
+/node_modules
+/dist
+/.angular
+/.vscode
+npm-debug.log
+yarn-error.log
+.angular-serve.*.log
+.env
+.env.local
