@@ -13,19 +13,19 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     },
     nav: [
       { label: 'Ekspertiza', href: '#expertise' },
-      { label: 'Kako radim', href: '#process' },
+      { label: 'Pristup', href: '#process' },
       { label: 'O meni', href: '#about' },
       { label: 'Kontakt', href: '#contact' },
     ],
     hero: {
       eyebrow: 'Independent advisory practice',
       title: 'Vaša kompanija je porasla. Da li su procesi porasli sa njom?',
-      text: 'Pomažem kompanijama da pronađu operativna uska grla, unaprede poslovne procese i donesu bolje odluke o digitalizaciji.',
+      text: 'Nezavisno savetovanje za identifikaciju operativnih uskih grla, unapređenje poslovnih procesa i donošenje boljih odluka o digitalizaciji.',
       expertise: 'Business Process Improvement · Management Analytics · Digitalization Advisory',
       primaryCta: 'Razgovarajmo o problemu',
       secondaryCta: 'Kako izgleda angažman',
       panelKicker: 'Senior · Independent · Selective',
-      panelText: 'Ne počinjem od softvera. Počinjem od poslovnog problema.',
+      panelText: 'Polazna tačka nije softver. Polazna tačka je poslovni problem.',
     },
     sectionLabels: {
       problems: 'Prepoznavanje problema',
@@ -73,19 +73,19 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       ],
     },
     advice: {
-      title: 'Ne počinjem od softvera.',
+      title: 'Polazna tačka nije softver.',
       text: 'Novi ERP, aplikacija ili automatizacija mogu da budu deo rešenja. Ali ako proces nije dobro definisan, tehnologija samo ubrzava postojeći problem.',
       principles: [
-        { icon: 'business_center', title: 'Business first', text: 'Prvo razumemo problem i poslovni cilj.' },
+        { icon: 'business_center', title: 'Business first', text: 'Prvo se razumeju problem i poslovni cilj.' },
         { icon: 'verified', title: 'Independent advice', text: 'Preporuka nije vezana za određeni ERP, platformu ili dobavljača.' },
         { icon: 'query_stats', title: 'Technology-aware', text: 'Rešenje mora biti i poslovno opravdano i tehnički realno.' },
       ],
     },
     process: {
-      title: 'Kako izgleda angažman',
+      title: 'Kako izgleda savetodavni angažman',
       intro: 'Rad je fokusiran, dogovoren po fazama i usmeren na konkretan poslovni rezultat.',
       steps: [
-        { number: '01', title: 'Razgovor', text: 'Definišemo problem i očekivani rezultat.' },
+        { number: '01', title: 'Razgovor', text: 'Definisanje problema i očekivanog rezultata.' },
         { number: '02', title: 'Razumevanje procesa', text: 'Razgovori sa ljudima, dokumentacija, sistemi i podaci.' },
         { number: '03', title: 'Dijagnostika', text: 'Identifikacija uzroka, uskih grla, rizika i nepotrebne kompleksnosti.' },
         { number: '04', title: 'Predlog', text: 'Bolji proces, KPI, digitalizacija ili preporuka za donošenje odluke.' },
@@ -93,7 +93,7 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       ],
     },
     selectedProblems: {
-      title: 'Tipični problemi koje analiziram',
+      title: 'Tipični problemi za analizu',
       items: [
         'Kako ubrzati proces od izvršenja usluge do fakturisanja.',
         'Kako menadžmentu omogućiti pravovremen pregled profitabilnosti.',
@@ -107,23 +107,23 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       label: 'Independent advisory practice',
       title: 'Ograničen broj konsultantskih angažmana',
       paragraphs: [
-        'Van svog primarnog profesionalnog angažmana prihvatam ograničen broj nezavisnih savetodavnih projekata, prvenstveno kroz preporuke i direktne kontakte.',
+        'Van primarnog profesionalnog angažmana prihvata se ograničen broj nezavisnih savetodavnih projekata, prvenstveno kroz preporuke i direktne kontakte.',
         'Projekti su fokusirani na jasno definisane poslovne probleme, a dostupnost se dogovara u skladu sa obimom i prioritetom angažmana.',
-        'Zbog ograničenog kapaciteta prihvatam samo projekte kod kojih verujem da mogu da napravim konkretnu poslovnu razliku.',
+        'Zbog ograničenog kapaciteta, prioritet imaju projekti kod kojih postoji realan prostor za konkretnu poslovnu razliku.',
       ],
       badges: ['Limited engagements', 'Primarily by referral', 'Project-based advisory'],
     },
     about: {
-      title: 'Kratko o meni',
+      title: 'Profesionalni profil',
       paragraphs: [
         'Softverski i poslovni konsultant sa dugogodišnjim iskustvom u unapređenju poslovnih procesa i informacionih sistema.',
-        'Povremeno, van svog primarnog profesionalnog angažmana, prihvatam ograničen broj nezavisnih savetodavnih projekata - prvenstveno kroz preporuke.',
+        'Nezavisni savetodavni projekti prihvataju se selektivno, prvenstveno kroz preporuke i direktne profesionalne kontakte.',
       ],
       tags: 'Business Processes · Operations · Digitalization · Technology Advisory',
     },
     contact: {
       title: 'Imate proces za koji mislite da može da radi bolje?',
-      text: 'Opišite problem u nekoliko rečenica. Ako procenim da postoji dobar profesionalni fit, prvi razgovor možemo iskoristiti da definišemo šta bi imalo smisla dalje analizirati.',
+      text: 'Problem je dovoljno opisati u nekoliko rečenica. Ako postoji dobar profesionalni fit, uvodni razgovor služi da se proceni šta ima smisla dalje analizirati.',
       form: {
         name: 'Ime i prezime',
         company: 'Kompanija',
@@ -134,7 +134,7 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
         success: 'Hvala. Upit je pripremljen za slanje.',
         error: 'Nešto nije prošlo kako treba. Pokušajte ponovo ili pošaljite email direktno.',
         required: 'Popunite obavezna polja.',
-        privacy: 'Zbog ograničenog broja angažmana, svaki upit prvo pregledam kako bih procenio da li postoji dobar profesionalni fit.',
+        privacy: 'Zbog ograničenog broja angažmana, svaki upit se prvo pregleda kako bi se procenilo da li postoji dobar profesionalni fit.',
       },
     },
     footer: {
@@ -157,19 +157,19 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     },
     nav: [
       { label: 'Expertise', href: '#expertise' },
-      { label: 'How I Work', href: '#process' },
+      { label: 'Approach', href: '#process' },
       { label: 'About', href: '#about' },
       { label: 'Contact', href: '#contact' },
     ],
     hero: {
       eyebrow: 'Independent advisory practice',
       title: 'Your company has grown. Have your processes grown with it?',
-      text: 'I help companies identify operational bottlenecks, improve business processes, and make better decisions about digitalization.',
+      text: 'Independent advisory for identifying operational bottlenecks, improving business processes, and making better digitalization decisions.',
       expertise: 'Business Process Improvement · Management Analytics · Digitalization Advisory',
       primaryCta: 'Discuss the problem',
       secondaryCta: 'How engagement works',
       panelKicker: 'Senior · Independent · Selective',
-      panelText: 'I do not start with software. I start with the business problem.',
+      panelText: 'The starting point is not software. The starting point is the business problem.',
     },
     sectionLabels: {
       problems: 'Problem recognition',
@@ -217,19 +217,19 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       ],
     },
     advice: {
-      title: 'I do not start with software.',
+      title: 'The starting point is not software.',
       text: 'A new ERP, application, or automation may be part of the answer. But if the process is not clearly defined, technology only accelerates the existing problem.',
       principles: [
-        { icon: 'business_center', title: 'Business first', text: 'We first understand the problem and the business objective.' },
+        { icon: 'business_center', title: 'Business first', text: 'The problem and business objective come first.' },
         { icon: 'verified', title: 'Independent advice', text: 'Recommendations are not tied to a specific ERP, platform, or vendor.' },
         { icon: 'query_stats', title: 'Technology-aware', text: 'The solution must be commercially justified and technically realistic.' },
       ],
     },
     process: {
-      title: 'How engagement works',
+      title: 'How advisory engagement works',
       intro: 'The work is focused, milestone-oriented, and directed toward a concrete business outcome.',
       steps: [
-        { number: '01', title: 'Conversation', text: 'We define the problem and the expected result.' },
+        { number: '01', title: 'Conversation', text: 'Definition of the problem and expected result.' },
         { number: '02', title: 'Process understanding', text: 'Interviews, documentation, systems, and available data.' },
         { number: '03', title: 'Diagnostic', text: 'Identifying causes, bottlenecks, risks, and unnecessary complexity.' },
         { number: '04', title: 'Recommendation', text: 'A better process, KPI, digitalization path, or decision recommendation.' },
@@ -237,7 +237,7 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       ],
     },
     selectedProblems: {
-      title: 'Typical problems I analyze',
+      title: 'Typical problems for analysis',
       items: [
         'How to accelerate the process from service delivery to invoicing.',
         'How to give management timely visibility into profitability.',
@@ -251,23 +251,23 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       label: 'Independent advisory practice',
       title: 'A limited number of advisory engagements',
       paragraphs: [
-        'Outside my primary professional role, I accept a limited number of independent advisory projects, primarily through referrals and direct professional introductions.',
+        'Outside the primary professional role, a limited number of independent advisory projects are accepted, primarily through referrals and direct professional introductions.',
         'Projects are focused on clearly defined business problems, with availability agreed according to engagement scope and priority.',
-        'Because capacity is limited, I only accept projects where I believe I can create a concrete business difference.',
+        'Because capacity is limited, priority is given to projects with a realistic opportunity to create concrete business value.',
       ],
       badges: ['Limited engagements', 'Primarily by referral', 'Project-based advisory'],
     },
     about: {
-      title: 'Briefly about me',
+      title: 'Professional profile',
       paragraphs: [
         'A software and business consultant with long-standing experience improving business processes and information systems.',
-        'Occasionally, outside my primary professional role, I accept a limited number of independent advisory projects - primarily through referrals.',
+        'Independent advisory projects are accepted selectively, primarily through referrals and direct professional introductions.',
       ],
       tags: 'Business Processes · Operations · Digitalization · Technology Advisory',
     },
     contact: {
       title: 'Do you have a process that should work better?',
-      text: 'Describe the issue in a few sentences. If there is a strong professional fit, the first conversation can clarify what would make sense to analyze next.',
+      text: 'A short description of the issue is enough. If there is a strong professional fit, the introductory conversation can clarify what would make sense to analyze next.',
       form: {
         name: 'Full name',
         company: 'Company',
@@ -308,12 +308,12 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     hero: {
       eyebrow: 'Independent advisory practice',
       title: 'Ваша компания выросла. Выросли ли вместе с ней процессы?',
-      text: 'Помогаю компаниям находить операционные узкие места, улучшать бизнес-процессы и принимать более точные решения о цифровизации.',
+      text: 'Независимый консалтинг для выявления операционных узких мест, улучшения бизнес-процессов и более точных решений о цифровизации.',
       expertise: 'Business Process Improvement · Management Analytics · Digitalization Advisory',
       primaryCta: 'Обсудить проблему',
       secondaryCta: 'Как проходит работа',
       panelKicker: 'Senior · Independent · Selective',
-      panelText: 'Я не начинаю с программного обеспечения. Я начинаю с бизнес-проблемы.',
+      panelText: 'Отправная точка - не программное обеспечение. Отправная точка - бизнес-проблема.',
     },
     sectionLabels: {
       problems: 'Распознавание проблемы',
@@ -361,19 +361,19 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       ],
     },
     advice: {
-      title: 'Я не начинаю с программного обеспечения.',
+      title: 'Отправная точка - не программное обеспечение.',
       text: 'Новая ERP, приложение или автоматизация могут быть частью решения. Но если процесс не определен ясно, технология только ускоряет уже существующую проблему.',
       principles: [
-        { icon: 'business_center', title: 'Сначала бизнес', text: 'Сначала разбираемся в проблеме и бизнес-цели.' },
+        { icon: 'business_center', title: 'Сначала бизнес', text: 'В первую очередь рассматриваются проблема и бизнес-цель.' },
         { icon: 'verified', title: 'Независимая рекомендация', text: 'Рекомендация не привязана к конкретной ERP, платформе или поставщику.' },
         { icon: 'query_stats', title: 'Технологическая реалистичность', text: 'Решение должно быть оправдано для бизнеса и технически реализуемо.' },
       ],
     },
     process: {
-      title: 'Как проходит работа',
+      title: 'Как проходит консультационный проект',
       intro: 'Работа сфокусирована, идет по согласованным этапам и направлена на конкретный бизнес-результат.',
       steps: [
-        { number: '01', title: 'Разговор', text: 'Определяем проблему и ожидаемый результат.' },
+        { number: '01', title: 'Разговор', text: 'Определение проблемы и ожидаемого результата.' },
         { number: '02', title: 'Понимание процесса', text: 'Интервью, документация, системы и доступные данные.' },
         { number: '03', title: 'Диагностика', text: 'Выявление причин, узких мест, рисков и лишней сложности.' },
         { number: '04', title: 'Рекомендация', text: 'Улучшенный процесс, KPI, направление цифровизации или рекомендация для решения.' },
@@ -395,23 +395,23 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       label: 'Independent advisory practice',
       title: 'Ограниченное количество консультационных проектов',
       paragraphs: [
-        'Вне моей основной профессиональной роли я принимаю ограниченное количество независимых консультационных проектов, преимущественно через рекомендации и прямые профессиональные контакты.',
+        'Вне основной профессиональной роли принимается ограниченное количество независимых консультационных проектов, преимущественно через рекомендации и прямые профессиональные контакты.',
         'Проекты сфокусированы на четко определенных бизнес-проблемах, а доступность согласуется с учетом объема и приоритета работы.',
-        'Из-за ограниченной емкости я принимаю только те проекты, где считаю возможным создать конкретную бизнес-ценность.',
+        'Из-за ограниченной емкости приоритет получают проекты, где есть реалистичная возможность создать конкретную бизнес-ценность.',
       ],
       badges: ['Ограниченные проекты', 'Преимущественно по рекомендации', 'Проектный консалтинг'],
     },
     about: {
-      title: 'Коротко обо мне',
+      title: 'Профессиональный профиль',
       paragraphs: [
         'Консультант по программным решениям и бизнесу с многолетним опытом улучшения бизнес-процессов и информационных систем.',
-        'Периодически, вне моей основной профессиональной роли, я принимаю ограниченное количество независимых консультационных проектов - преимущественно через рекомендации.',
+        'Независимые консультационные проекты принимаются выборочно, преимущественно через рекомендации и прямые профессиональные контакты.',
       ],
       tags: 'Business Processes · Operations · Digitalization · Technology Advisory',
     },
     contact: {
       title: 'Есть процесс, который должен работать лучше?',
-      text: 'Опишите проблему в нескольких предложениях. Если профессиональный fit будет хорошим, первая встреча поможет определить, что имеет смысл анализировать дальше.',
+      text: 'Достаточно кратко описать проблему в нескольких предложениях. Если профессиональный fit будет хорошим, вводный разговор поможет определить, что имеет смысл анализировать дальше.',
       form: {
         name: 'Имя и фамилия',
         company: 'Компания',
