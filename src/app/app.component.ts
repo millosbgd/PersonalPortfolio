@@ -21,7 +21,8 @@ export class AppComponent {
   readonly currentLanguage = this.contentService.language;
   readonly currentYear = new Date().getFullYear();
   readonly mobileMenuOpen = signal(false);
-  readonly submitState = signal<'idle' | 'success' | 'error'>('idle');
+  readonly submitState = signal<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  readonly isSubmitting = computed(() => this.submitState() === 'submitting');
   readonly isSuccess = computed(() => this.submitState() === 'success');
   readonly isError = computed(() => this.submitState() === 'error');
 
@@ -48,6 +49,10 @@ export class AppComponent {
   }
 
   submitContact(): void {
+    if (this.isSubmitting()) {
+      return;
+    }
+
     this.submitState.set('idle');
 
     if (this.contactForm.invalid) {
@@ -62,6 +67,7 @@ export class AppComponent {
     }
 
     const payload = this.contactForm.getRawValue();
+    this.submitState.set('submitting');
 
     fetch('/api/contact', {
       method: 'POST',

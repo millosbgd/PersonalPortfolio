@@ -31,6 +31,7 @@ export interface ContactFormContent {
   phone: string;
   message: string;
   submit: string;
+  submitting: string;
   success: string;
   error: string;
   required: string;

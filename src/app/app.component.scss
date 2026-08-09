@@ -223,9 +223,24 @@ h3 {
     transform: translateY(-1px);
   }
 
+  &:disabled {
+    cursor: wait;
+    opacity: 0.78;
+    transform: none;
+  }
+
   .material-symbols-rounded {
     font-size: 1.15rem;
   }
+}
+
+.button__spinner {
+  animation: spin 760ms linear infinite;
+  border: 2px solid rgba(247, 245, 240, 0.42);
+  border-radius: 999px;
+  border-top-color: var(--background);
+  height: 1rem;
+  width: 1rem;
 }
 
 .button--primary {
@@ -241,6 +256,12 @@ h3 {
 .button--secondary {
   border-color: var(--border);
   color: var(--text-primary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hero__panel {

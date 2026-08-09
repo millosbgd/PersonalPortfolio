@@ -205,9 +205,10 @@
         <p class="form-message form-message--success" *ngIf="isSuccess()">{{ content().contact.form.success }}</p>
         <p class="form-message form-message--error" *ngIf="isError()">{{ contactForm.invalid ? content().contact.form.required : content().contact.form.error }}</p>
 
-        <button class="button button--primary" type="submit">
-          {{ content().contact.form.submit }}
-          <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+        <button class="button button--primary" type="submit" [disabled]="isSubmitting()" [attr.aria-busy]="isSubmitting()">
+          <span class="button__spinner" *ngIf="isSubmitting()" aria-hidden="true"></span>
+          {{ isSubmitting() ? content().contact.form.submitting : content().contact.form.submit }}
+          <span class="material-symbols-rounded" *ngIf="!isSubmitting()" aria-hidden="true">arrow_forward</span>
         </button>
         <p class="contact-form__privacy">{{ content().contact.form.privacy }}</p>
       </form>
