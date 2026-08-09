@@ -4,5 +4,8 @@
   "private": true,
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "@azure/data-tables": "^13.3.2"
   }
 }

@@ -1,3 +1,9 @@
+const { TableClient } = require('@azure/data-tables');
+const crypto = require('crypto');
+
+const TABLE_NAME = process.env.CONTACT_TABLE_NAME || 'ContactRequests';
+const SOURCE = 'novakovic-advisory-website';
+
 module.exports = async function (context, req) {
   const body = req.body || {};
   const requiredFields = ['name', 'company', 'email', 'message'];
@@ -19,44 +25,62 @@ module.exports = async function (context, req) {
     return;
   }
 
-  const endpoint = process.env.CONTACT_ENDPOINT_URL;
+  const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
 
-  if (!endpoint) {
+  if (!connectionString) {
+    context.log.error('AZURE_STORAGE_CONNECTION_STRING is not configured.');
     context.res = {
       status: 501,
       body: {
         ok: false,
-        error: 'Contact endpoint is not configured.',
+        error: 'Contact storage is not configured.',
       },
     };
     return;
   }
 
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Contact-Token': process.env.CONTACT_ENDPOINT_TOKEN || '',
-    },
-    body: JSON.stringify({
-      name: body.name,
-      company: body.company,
-      email: body.email,
-      phone: body.phone || '',
-      message: body.message,
-      source: 'boutique-consulting-website',
-      createdAt: new Date().toISOString(),
-    }),
-  });
+  try {
+    const submittedAt = new Date();
+    const tableClient = TableClient.fromConnectionString(connectionString, TABLE_NAME);
 
-  context.res = {
-    status: response.ok ? 202 : 502,
-    body: {
-      ok: response.ok,
-    },
-  };
+    await tableClient.createEntity({
+      partitionKey: submittedAt.toISOString().slice(0, 10),
+      rowKey: `${submittedAt.getTime()}-${crypto.randomUUID()}`,
+      submittedAt: submittedAt.toISOString(),
+      name: normalize(body.name, 160),
+      company: normalize(body.company, 200),
+      email: normalize(body.email, 254).toLowerCase(),
+      phone: normalize(body.phone, 80),
+      message: normalize(body.message, 4000),
+      source: SOURCE,
+      userAgent: normalize(req.headers['user-agent'], 500),
+      ipAddress: normalize(firstHeaderValue(req.headers['x-forwarded-for']), 120),
+    });
+
+    context.res = {
+      status: 202,
+      body: { ok: true },
+    };
+  } catch (error) {
+    context.log.error('Failed to store contact request.', error);
+    context.res = {
+      status: 502,
+      body: {
+        ok: false,
+        error: 'Contact request could not be stored.',
+      },
+    };
+  }
 };
+
+function firstHeaderValue(value) {
+  return String(value || '').split(',')[0].trim();
+}
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || ''));
+}
+
+function normalize(value, maxLength) {
+  return String(value || '').trim().slice(0, maxLength);
 }
