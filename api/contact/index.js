@@ -1,3 +1,4 @@
+const { EmailClient } = require('@azure/communication-email');
 const { TableClient } = require('@azure/data-tables');
 const crypto = require('crypto');
 
@@ -42,10 +43,7 @@ module.exports = async function (context, req) {
   try {
     const submittedAt = new Date();
     const tableClient = TableClient.fromConnectionString(connectionString, TABLE_NAME);
-
-    await tableClient.createEntity({
-      partitionKey: submittedAt.toISOString().slice(0, 10),
-      rowKey: `${submittedAt.getTime()}-${crypto.randomUUID()}`,
+    const contactRequest = {
       submittedAt: submittedAt.toISOString(),
       name: normalize(body.name, 160),
       company: normalize(body.company, 200),
@@ -55,7 +53,15 @@ module.exports = async function (context, req) {
       source: SOURCE,
       userAgent: normalize(req.headers['user-agent'], 500),
       ipAddress: normalize(firstHeaderValue(req.headers['x-forwarded-for']), 120),
+    };
+
+    await tableClient.createEntity({
+      partitionKey: submittedAt.toISOString().slice(0, 10),
+      rowKey: `${submittedAt.getTime()}-${crypto.randomUUID()}`,
+      ...contactRequest,
     });
+
+    await sendNotificationEmail(context, contactRequest);
 
     context.res = {
       status: 202,
@@ -83,4 +89,76 @@ function isValidEmail(value) {
 
 function normalize(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
+}
+
+async function sendNotificationEmail(context, contactRequest) {
+  const emailConnectionString = process.env.COMMUNICATION_SERVICES_CONNECTION_STRING;
+  const senderAddress = process.env.CONTACT_FROM_EMAIL;
+  const recipientAddress = process.env.CONTACT_NOTIFY_EMAIL;
+
+  if (!emailConnectionString || !senderAddress || !recipientAddress) {
+    context.log.warn('Contact notification email is not configured.');
+    return;
+  }
+
+  try {
+    const emailClient = new EmailClient(emailConnectionString);
+
+    await emailClient.beginSend({
+      senderAddress,
+      content: {
+        subject: `Novi kontakt upit - ${contactRequest.company}`,
+        plainText: buildPlainTextEmail(contactRequest),
+        html: buildHtmlEmail(contactRequest),
+      },
+      recipients: {
+        to: [{ address: recipientAddress }],
+      },
+      replyTo: [{ address: contactRequest.email, displayName: contactRequest.name }],
+    });
+  } catch (error) {
+    context.log.error('Failed to send contact notification email.', error);
+  }
+}
+
+function buildPlainTextEmail(contactRequest) {
+  return [
+    'Stigao je novi kontakt upit preko novakovicadvisory.com.',
+    '',
+    `Ime: ${contactRequest.name}`,
+    `Kompanija: ${contactRequest.company}`,
+    `Email: ${contactRequest.email}`,
+    `Telefon: ${contactRequest.phone || '-'}`,
+    `Vreme: ${contactRequest.submittedAt}`,
+    '',
+    'Poruka:',
+    contactRequest.message,
+  ].join('\n');
+}
+
+function buildHtmlEmail(contactRequest) {
+  return `
+    <div style="font-family: Arial, sans-serif; color: #15171a; line-height: 1.55;">
+      <h2 style="margin: 0 0 16px;">Novi kontakt upit</h2>
+      <p>Stigao je novi kontakt upit preko <strong>novakovicadvisory.com</strong>.</p>
+      <table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+        <tr><td><strong>Ime</strong></td><td>${escapeHtml(contactRequest.name)}</td></tr>
+        <tr><td><strong>Kompanija</strong></td><td>${escapeHtml(contactRequest.company)}</td></tr>
+        <tr><td><strong>Email</strong></td><td>${escapeHtml(contactRequest.email)}</td></tr>
+        <tr><td><strong>Telefon</strong></td><td>${escapeHtml(contactRequest.phone || '-')}</td></tr>
+        <tr><td><strong>Vreme</strong></td><td>${escapeHtml(contactRequest.submittedAt)}</td></tr>
+      </table>
+      <h3 style="margin: 20px 0 8px;">Poruka</h3>
+      <p style="white-space: pre-wrap;">${escapeHtml(contactRequest.message)}</p>
+    </div>
+  `;
+}
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
