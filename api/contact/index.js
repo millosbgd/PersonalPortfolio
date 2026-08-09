@@ -104,7 +104,7 @@ async function sendNotificationEmail(context, contactRequest) {
   try {
     const emailClient = new EmailClient(emailConnectionString);
 
-    await emailClient.beginSend({
+    const poller = await emailClient.beginSend({
       senderAddress,
       content: {
         subject: `Novi kontakt upit - ${contactRequest.company}`,
@@ -116,6 +116,13 @@ async function sendNotificationEmail(context, contactRequest) {
       },
       replyTo: [{ address: contactRequest.email, displayName: contactRequest.name }],
     });
+    const result = await poller.pollUntilDone();
+
+    context.log(`Contact notification email status: ${result.status || 'unknown'}`);
+
+    if (result.error) {
+      throw new Error(result.error.message || 'Email send failed.');
+    }
   } catch (error) {
     context.log.error('Failed to send contact notification email.', error);
   }
