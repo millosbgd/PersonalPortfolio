@@ -43,6 +43,8 @@ module.exports = async function (context, req) {
   try {
     const submittedAt = new Date();
     const tableClient = TableClient.fromConnectionString(connectionString, TABLE_NAME);
+    const partitionKey = submittedAt.toISOString().slice(0, 10);
+    const rowKey = `${submittedAt.getTime()}-${crypto.randomUUID()}`;
     const contactRequest = {
       submittedAt: submittedAt.toISOString(),
       name: normalize(body.name, 160),
@@ -56,12 +58,13 @@ module.exports = async function (context, req) {
     };
 
     await tableClient.createEntity({
-      partitionKey: submittedAt.toISOString().slice(0, 10),
-      rowKey: `${submittedAt.getTime()}-${crypto.randomUUID()}`,
+      partitionKey,
+      rowKey,
       ...contactRequest,
     });
 
-    await sendNotificationEmail(context, contactRequest);
+    const notificationResult = await sendNotificationEmail(context, contactRequest);
+    await updateNotificationStatus(context, tableClient, partitionKey, rowKey, notificationResult);
 
     context.res = {
       status: 202,
@@ -98,7 +101,10 @@ async function sendNotificationEmail(context, contactRequest) {
 
   if (!emailConnectionString || !senderAddress || !recipientAddress) {
     context.log.warn('Contact notification email is not configured.');
-    return;
+    return {
+      status: 'not_configured',
+      error: 'Missing COMMUNICATION_SERVICES_CONNECTION_STRING, CONTACT_FROM_EMAIL, or CONTACT_NOTIFY_EMAIL.',
+    };
   }
 
   try {
@@ -118,13 +124,40 @@ async function sendNotificationEmail(context, contactRequest) {
     });
     const result = await poller.pollUntilDone();
 
-    context.log(`Contact notification email status: ${result.status || 'unknown'}`);
+    const status = result.status || 'unknown';
+    context.log(`Contact notification email status: ${status}`);
 
     if (result.error) {
       throw new Error(result.error.message || 'Email send failed.');
     }
+
+    return {
+      status,
+      error: '',
+    };
   } catch (error) {
     context.log.error('Failed to send contact notification email.', error);
+    return {
+      status: 'failed',
+      error: normalize(error && error.message ? error.message : error, 1000),
+    };
+  }
+}
+
+async function updateNotificationStatus(context, tableClient, partitionKey, rowKey, notificationResult) {
+  try {
+    await tableClient.updateEntity(
+      {
+        partitionKey,
+        rowKey,
+        notificationEmailStatus: notificationResult.status,
+        notificationEmailError: notificationResult.error,
+        notificationEmailCheckedAt: new Date().toISOString(),
+      },
+      'Merge'
+    );
+  } catch (error) {
+    context.log.error('Failed to update contact notification status.', error);
   }
 }
 
