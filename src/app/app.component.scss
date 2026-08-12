@@ -21,6 +21,7 @@
   align-items: center;
   color: var(--background);
   display: inline-flex;
+  gap: 0.75rem;
   text-decoration: none;
 
   strong,
@@ -38,6 +39,14 @@
     font-size: 0.72rem;
     margin-top: 0.1rem;
   }
+}
+
+.brand__logo {
+  border-radius: 8px;
+  display: block;
+  height: 42px;
+  object-fit: cover;
+  width: 42px;
 }
 
 .site-nav {
