@@ -13,7 +13,8 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     },
     nav: [
       { label: 'Ekspertiza', href: '#expertise' },
-      { label: 'Pristup', href: '#process' },
+      // HIDDEN 2026-08-12: Restore when the advisory process section is visible again.
+      // { label: 'Pristup', href: '#process' },
       { label: 'O meni', href: '#about' },
       { label: 'Kontakt', href: '#contact' },
     ],
@@ -117,7 +118,8 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       title: 'Profesionalni profil',
       paragraphs: [
         'Softverski i poslovni konsultant sa dugogodišnjim iskustvom u unapređenju poslovnih procesa i informacionih sistema.',
-        'Nezavisni savetodavni projekti prihvataju se selektivno, prvenstveno kroz preporuke i direktne profesionalne kontakte.',
+        // HIDDEN 2026-08-12: Restore when selective advisory availability messaging is needed again.
+        // 'Nezavisni savetodavni projekti prihvataju se selektivno, prvenstveno kroz preporuke i direktne profesionalne kontakte.',
       ],
       tags: 'Business Processes · Operations · Digitalization · Technology Advisory',
     },
@@ -159,7 +161,8 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     },
     nav: [
       { label: 'Expertise', href: '#expertise' },
-      { label: 'Approach', href: '#process' },
+      // HIDDEN 2026-08-12: Restore when the advisory process section is visible again.
+      // { label: 'Approach', href: '#process' },
       { label: 'About', href: '#about' },
       { label: 'Contact', href: '#contact' },
     ],
@@ -263,7 +266,8 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       title: 'Professional profile',
       paragraphs: [
         'A software and business consultant with long-standing experience improving business processes and information systems.',
-        'Independent advisory projects are accepted selectively, primarily through referrals and direct professional introductions.',
+        // HIDDEN 2026-08-12: Restore when selective advisory availability messaging is needed again.
+        // 'Independent advisory projects are accepted selectively, primarily through referrals and direct professional introductions.',
       ],
       tags: 'Business Processes · Operations · Digitalization · Technology Advisory',
     },
@@ -305,7 +309,8 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
     },
     nav: [
       { label: 'Экспертиза', href: '#expertise' },
-      { label: 'Подход', href: '#process' },
+      // HIDDEN 2026-08-12: Restore when the advisory process section is visible again.
+      // { label: 'Подход', href: '#process' },
       { label: 'О себе', href: '#about' },
       { label: 'Контакт', href: '#contact' },
     ],
@@ -409,7 +414,8 @@ export const CONTENT: Record<LanguageCode, SiteContent> = {
       title: 'Профессиональный профиль',
       paragraphs: [
         'Консультант по программным решениям и бизнесу с многолетним опытом улучшения бизнес-процессов и информационных систем.',
-        'Независимые консультационные проекты принимаются выборочно, преимущественно через рекомендации и прямые профессиональные контакты.',
+        // HIDDEN 2026-08-12: Restore when selective advisory availability messaging is needed again.
+        // 'Независимые консультационные проекты принимаются выборочно, преимущественно через рекомендации и прямые профессиональные контакты.',
       ],
       tags: 'Business Processes · Operations · Digitalization · Technology Advisory',
     },
